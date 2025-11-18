@@ -2,7 +2,7 @@ import base64
 import binascii
 from dataclasses import dataclass, field
 from functools import lru_cache
-from typing import Any, Dict, Iterable, Optional, Tuple, Union
+from typing import Any, Dict, Iterable, Mapping, Optional, Tuple, Union
 
 from google.auth import default
 from google.auth.exceptions import DefaultCredentialsError
@@ -68,6 +68,8 @@ class BigQueryCredentials(Credentials):
     # Keyfile json creds (unicode or base 64 encoded)
     keyfile: Optional[str] = None
     keyfile_json: Optional[Dict[str, Any]] = None
+
+    labels: Optional[Mapping[str, str]] = None
 
     # oauth-secrets
     token: Optional[str] = None
@@ -157,6 +159,7 @@ class BigQueryCredentials(Credentials):
             "job_retries",
             "job_creation_timeout_seconds",
             "job_execution_timeout_seconds",
+            "labels",
             "timeout_seconds",
             "client_id",
             "token_uri",
